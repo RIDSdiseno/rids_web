@@ -1,0 +1,174 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+/* 🌌 Fondo general */
+.servicios-section {
+  background: linear-gradient(180deg, #04161b 0%, #063445 60%, #0b5a72 100%);
+  color: #0c1c21;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 🎠 Carrusel */
+.servicios-carousel {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.servicios-slide {
+  width: 100%;
+  height: 60vh;
+}
+
+.servicios-img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+  filter: brightness(0.45);
+}
+
+/* 🌟 Texto fijo sobre el carrusel */
+.servicios-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 18, 25, 0.3) 0%,
+    rgba(0, 18, 25, 0.7) 80%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.servicios-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #e5ecee;
+  text-shadow: 0 0 18px rgba(7, 113, 143, 0.6);
+  margin-bottom: 0.5rem;
+}
+
+.servicios-sub {
+  color: #f1f6f7;
+  font-size: 1.2rem;
+  max-width: 600px;
+}
+
+/* 📦 Contenido principal */
+.servicios-container {
+  text-align: center;
+  padding: 5rem 8%;
+}
+
+.servicios-heading {
+  font-size: 2.4rem;
+  color: #d9dfe0;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.servicios-text {
+  color: #cdd8dc;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+/* 🎴 Grid de Cards */
+.servicios-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  justify-items: center;
+}
+
+/* 🧊 Card blanca */
+.servicios-card {
+  background: #ffffff;
+  border-radius: 1.3rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  width: 100%;
+  max-width: 320px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  color: #0b2430;
+}
+
+.servicios-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(0, 189, 242, 0.25);
+}
+
+/* 🖼️ Ícono o Imagen del servicio */
+.servicios-icon-img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+/* ✍️ Título del servicio */
+.servicios-card-title {
+  color: #0b2e3d;
+  font-weight: 600;
+  font-size: 1.3rem;
+  transition: color 0.3s;
+}
+
+/* 🧾 Descripción desplegable */
+.servicios-card-desc {
+  color: #3a4d55;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 0.8rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+
+.servicios-card.active .servicios-card-desc {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .servicios-title {
+    font-size: 2rem;
+  }
+  .servicios-carousel {
+    height: 40vh;
+  }
+  .servicios-img {
+    height: 40vh;
+  }
+  .servicios-card {
+    max-width: 90%;
+  }
+}

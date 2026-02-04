@@ -1,0 +1,65 @@
+/* 🌌 Sección oscura de fondo */
+.sponsor-section {
+  background: #0f172a; /* azul oscuro elegante */
+  padding: 60px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Contenedor principal */
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pista con movimiento continuo */
+.carousel-track {
+  display: flex;
+  width: calc(250px * 10); /* tamaño del logo × número total */
+  animation: scrollLoop 40s linear infinite;
+}
+
+/* Ajuste de las imágenes */
+.carousel-track img {
+  width: 180px;
+  height: auto;
+  margin: 0 40px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.3));
+  transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Efecto hover */
+.carousel-track img:hover {
+  transform: scale(1.25);
+  opacity: 1;
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.8));
+}
+
+/* Animación infinita */
+@keyframes scrollLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-70%);
+  }
+}
+
+/* 🔁 Reversa o velocidad (ajustable)
+   Ejemplo: más rápido → 25s
+             más lento → 60s */
+
+             @media (max-width: 768px) {
+  .carousel-track img {
+    width: 120px;
+    margin: 0 25px;
+  }
+
+  .carousel-track {
+    animation-duration: 55s; /* más lento en móvil */
+  }
+}

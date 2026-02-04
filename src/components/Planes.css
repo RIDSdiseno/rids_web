@@ -1,0 +1,209 @@
+/* 🌌 SECCIÓN PRINCIPAL */
+.planes-section {
+  background: linear-gradient(180deg, #04161B 0%, #063445 50%, #0B5A72 100%);
+  color: #E8F3F6;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 🔹 ENCABEZADO */
+.planes-hero {
+  text-align: center;
+  padding: 5rem 1rem;
+  background: linear-gradient(180deg, #0B5A72 0%, #05242D 100%);
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.35);
+}
+
+.planes-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #f5f5f5;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 16px rgba(0, 189, 242, 0.5);
+}
+
+.planes-sub {
+  color: #C8DDE4;
+  max-width: 750px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* 🔷 TARJETAS */
+.planes-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  padding: 4rem 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.plan-card {
+  background: rgba(10, 35, 45, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  position: relative;
+  backdrop-filter: blur(14px);
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 25px rgba(0, 189, 242, 0.15);
+}
+
+.plan-card--highlight {
+  border-color: #ebedee;
+  box-shadow: 0 0 30px rgba(0, 189, 242, 0.4);
+  transform: scale(1.03);
+}
+
+.plan-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 35px rgba(0, 189, 242, 0.4);
+}
+
+/* 🏷️ ETIQUETA OFERTA */
+.plan-offer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(135deg, #00BDF2, #008EC2);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-bottom-left-radius: 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* ✏️ TEXTO TARJETA */
+.plan-name {
+  color: #00BDF2;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.plan-subtitle {
+  text-align: center;
+  font-style: italic;
+  color: #9FB6BD;
+  margin-bottom: 1rem;
+}
+
+.plan-desc {
+  text-align: center;
+  color: #C8D6DA;
+}
+
+.plan-prices {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.plan-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.plan-discount {
+  color: #00BDF2;
+  font-weight: 600;
+}
+
+/* ✅ LISTA DE BENEFICIOS */
+.plan-list {
+  margin-top: 1.5rem;
+  color: #D7E3E8;
+  list-style: none;
+  padding: 0;
+}
+
+.plan-list li {
+  margin-bottom: 0.5rem;
+}
+
+.plan-list span {
+  color: #00BDF2;
+}
+
+/* 🔘 BOTÓN */
+.plan-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 0.8rem;
+  background: linear-gradient(135deg, #00BDF2, #008EC2);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 189, 242, 0.25);
+}
+
+.plan-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #0095C7, #00BDF2);
+  box-shadow: 0 15px 35px rgba(0, 189, 242, 0.35);
+}
+
+/* 🧾 TABLA COMPARATIVA */
+.planes-table-container {
+  background: linear-gradient(180deg, #063445 0%, #0B5A72 100%);
+  padding: 5rem 1rem;
+}
+
+.planes-table-title {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #e4e5e6;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-shadow: 0 0 14px rgba(0, 189, 242, 0.3);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.planes-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(11, 35, 44, 0.75);
+  min-width: 800px;
+  backdrop-filter: blur(12px);
+}
+
+.planes-table th {
+  background: rgba(6, 70, 95, 0.95);
+  color: #00BDF2;
+  text-transform: uppercase;
+  padding: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+}
+
+.planes-table td {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem;
+  text-align: center;
+  color: #E8F3F6;
+}
+
+.planes-table tr:hover {
+  background: rgba(0, 189, 242, 0.12);
+  transition: background 0.3s ease;
+}
+
+.planes-table .col-titulo {
+  text-align: left;
+  color: #00BDF2;
+  font-weight: 600;
+}

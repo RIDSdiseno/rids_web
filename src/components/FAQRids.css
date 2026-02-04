@@ -1,0 +1,468 @@
+/* ===========================
+   FAQ RIDS – Estilo principal
+   =========================== */
+
+:root {
+  --rids-petroleo: #005f6a;
+  --rids-accent: #206d99;
+  --faq-bg: #04161b;
+  --faq-card-bg: rgba(4, 19, 25, 0.9);
+  --faq-border: rgba(232, 243, 246, 0.22);
+  --faq-text-main: #e8f3f6;
+  --faq-text-muted: #c3dbe0;
+}
+
+/* Sección general */
+.faqrids-section {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #0f5f74 0%, #031018 55%, #02070b 100%);
+  color: var(--faq-text-main);
+  font-family: "Poppins", sans-serif;
+  padding: 4.5rem 1.25rem 5.5rem;
+}
+
+/* Halos de luz decorativos */
+.faqrids-section::before,
+.faqrids-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(70px);
+  opacity: 0.75;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.faqrids-section::before {
+  width: 380px;
+  height: 380px;
+  top: -140px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(32, 109, 153, 0.55), transparent 70%);
+  animation: faqridsHaloLeft 20s ease-in-out infinite alternate;
+}
+
+.faqrids-section::after {
+  width: 360px;
+  height: 360px;
+  bottom: -140px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(0, 95, 106, 0.9), transparent 70%);
+  animation: faqridsHaloRight 24s ease-in-out infinite alternate;
+}
+
+/* Contenido por encima de los halos */
+.faqrids-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Encabezado */
+.faqrids-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 2.5rem;
+  padding: 0 0.75rem;
+
+  opacity: 0;
+  transform: translateY(18px);
+  animation: faqridsFadeInDown 0.7s ease-out forwards;
+}
+
+.faqrids-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(0, 95, 106, 0.45);
+  border: 1px solid rgba(232, 243, 246, 0.35);
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.faqrids-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: translateX(-130%);
+  animation: faqridsShimmer 3.2s ease-in-out infinite;
+}
+
+.faqrids-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #f6fbfc;
+  text-align: center;
+  margin-bottom: 0.8rem; /* antes 0.4rem */
+}
+
+.faqrids-sub {
+  font-size: 0.95rem;
+  color: #d7eef2;
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2.4rem; /* antes 1.8rem → da más espacio hacia abajo */
+}
+
+/* Línea decorativa */
+.faqrids-header::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  margin: 1.8rem auto 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(232, 243, 246, 0),
+    rgba(232, 243, 246, 0.9),
+    rgba(232, 243, 246, 0)
+  );
+  opacity: 0.9;
+}
+
+/* Tags / categorías FAQ opcionales */
+.faqrids-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 1.2rem;
+}
+
+.faqrids-tag {
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 243, 246, 0.4);
+  font-size: 0.75rem;
+  color: #eaf6f8;
+  background: rgba(4, 22, 27, 0.6);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: faqridsFadeInUp 0.45s ease-out forwards;
+}
+
+/* Delays aproximados para los tags */
+.faqrids-tag:nth-child(1) { animation-delay: 0.25s; }
+.faqrids-tag:nth-child(2) { animation-delay: 0.32s; }
+.faqrids-tag:nth-child(3) { animation-delay: 0.39s; }
+.faqrids-tag:nth-child(4) { animation-delay: 0.46s; }
+.faqrids-tag:nth-child(5) { animation-delay: 0.53s; }
+
+/* Contenedor FAQ principal */
+.faqrids-body {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+  gap: 1.75rem;
+  align-items: flex-start;
+}
+
+/* Columna izquierda: acordeón */
+.faqrids-accordion {
+  background: rgba(4, 19, 25, 0.75);
+  border-radius: 1.25rem;
+  border: 1px solid var(--faq-border);
+  backdrop-filter: blur(12px);
+  padding: 1.2rem 1rem 1.4rem;
+  box-shadow: 0 18px 40px rgba(2, 12, 18, 0.7);
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: faqridsFadeInUp 0.6s ease forwards;
+  animation-delay: 0.35s;
+}
+
+/* Ítems FAQ */
+.faqrids-item {
+  border-radius: 0.9rem;
+  border: 1px solid rgba(232, 243, 246, 0.18);
+  background: rgba(2, 14, 19, 0.9);
+  margin-bottom: 0.7rem;
+  overflow: hidden;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.faqrids-item--open {
+  border-color: rgba(32, 109, 153, 0.7);
+  background: rgba(3, 22, 30, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(3, 24, 32, 0.6);
+}
+
+.faqrids-question {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: #e8f3f6;
+  font-size: 0.96rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.faqrids-question span:first-child {
+  flex: 1;
+  padding-right: 0.5rem;
+}
+
+.faqrids-icon {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  transition: transform 0.25s ease, color 0.25s ease;
+  color: #8fd4ff;
+}
+
+.faqrids-item--open .faqrids-icon {
+  transform: rotate(90deg);
+  color: #b0e4ff;
+}
+
+.faqrids-answer {
+  padding: 0 1rem 0.9rem;
+  font-size: 0.9rem;
+  color: #cde5ea;
+  line-height: 1.55;
+
+  /* animación de despliegue suave si usas height/auto con JS,
+     el contenido puede animar la opacidad para complementar */
+  animation: faqridsFadeInAnswer 0.25s ease-out;
+}
+
+/* Columna derecha: recuadro info extra */
+.faqrids-aside {
+  background: rgba(4, 19, 25, 0.78);
+  border-radius: 1.25rem;
+  border: 1px solid rgba(232, 243, 246, 0.2);
+  padding: 1.75rem 1.4rem;
+  box-shadow: 0 18px 40px rgba(3, 24, 32, 0.6);
+  backdrop-filter: blur(12px);
+
+  opacity: 0;
+  transform: translateY(24px);
+  animation: faqridsFadeInUp 0.65s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.faqrids-aside-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.faqrids-aside-text {
+  font-size: 0.9rem;
+  color: var(--faq-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.faqrids-aside-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem;
+  font-size: 0.9rem;
+  color: #e0f2f7;
+}
+
+.faqrids-aside-list li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.faqrids-aside-list li::before {
+  content: "▹";
+  color: #8fd4ff;
+  font-size: 0.9rem;
+  margin-top: 0.1rem;
+}
+
+.faqrids-aside-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.faqrids-aside-button {
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  border: 1px solid rgba(232, 243, 246, 0.4);
+  background: transparent;
+  color: #e8f3f6;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.faqrids-aside-button--primary {
+  background: var(--rids-accent);
+  border-color: var(--rids-accent);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+}
+
+.faqrids-aside-button--primary:hover {
+  background: #2b7fb3;
+  border-color: #2b7fb3;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+}
+
+.faqrids-aside-button--ghost {
+  background: transparent;
+}
+
+.faqrids-aside-button--ghost:hover {
+  background: rgba(4, 22, 27, 0.85);
+  border-color: #e8f3f6;
+  transform: translateY(-1px);
+}
+
+/* Footer SEO pequeño opcional */
+.faqrids-seo-text {
+  max-width: 900px;
+  margin: 2.2rem auto 0;
+  font-size: 0.84rem;
+  color: var(--faq-text-muted);
+  text-align: center;
+  line-height: 1.6;
+
+  opacity: 0;
+  transform: translateY(18px);
+  animation: faqridsFadeInUp 0.7s ease forwards;
+  animation-delay: 0.7s;
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media (max-width: 900px) {
+  .faqrids-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .faqrids-aside {
+    order: -1;
+  }
+
+  .faqrids-title {
+    font-size: 2rem;
+  }
+}
+
+/* ===========================
+   Animaciones
+   =========================== */
+
+@keyframes faqridsFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes faqridsFadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes faqridsFadeInAnswer {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes faqridsHaloLeft {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translate(18px, 10px) scale(1.06);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(8px, 20px) scale(1.02);
+    opacity: 0.7;
+  }
+}
+
+@keyframes faqridsHaloRight {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-16px, -10px) scale(1.05);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(-6px, -18px) scale(1.02);
+    opacity: 0.75;
+  }
+}
+
+@keyframes faqridsShimmer {
+  0% {
+    transform: translateX(-130%);
+  }
+  60% {
+    transform: translateX(130%);
+  }
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+/* Accesibilidad: reducir animaciones si el usuario lo pide */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition: none !important;
+  }
+}

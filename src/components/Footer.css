@@ -1,0 +1,40 @@
+/* 🦶 FOOTER - Paleta RIDS */
+.footer {
+  background: linear-gradient(180deg, #073956 0%, #09272C 100%);
+  color: #E6EEF1;
+  text-align: center;
+  padding: 40px 0 25px 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 15px;
+}
+
+.footer-icons a {
+  color: #E6EEF1;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 1.6rem;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.footer-icons a:hover {
+  background: #08394b;
+  color: #FFFFFF;
+  transform: scale(1.15);
+  box-shadow: 0 0 25px rgba(0, 174, 239, 0.5);
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}

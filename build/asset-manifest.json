@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/static/css/main.18edc310.css",
+    "main.js": "/static/js/main.8c2c2a84.js",
+    "static/media/sobrenosotros.png": "/static/media/sobrenosotros.6a38adeb2638ac70d651.png",
+    "static/media/hero2.png": "/static/media/hero2.5a008ed6a0661d019396.png",
+    "static/media/hero3.png": "/static/media/hero3.9975ddbd08aa90ac11a5.png",
+    "static/media/hero4.png": "/static/media/hero4.6e09fff213377d11b1b7.png",
+    "static/media/hero1.png": "/static/media/hero1.8844a24067dd2e12dd0f.png",
+    "static/media/foto1.jpg": "/static/media/foto1.1d6b5dc667998d4a28c2.jpg",
+    "static/media/foto2.jpg": "/static/media/foto2.cc03d4ee9e3444a378bf.jpg",
+    "static/media/barra6.png": "/static/media/barra6.8165876a41e5dc52e62f.png",
+    "static/media/LOGO_RIDS_blanco.png": "/static/media/LOGO_RIDS_blanco.21588c3023c11d00fb48.png",
+    "static/media/soporte2.png": "/static/media/soporte2.742caae5101d98ae2c49.png",
+    "static/media/excelencia.png": "/static/media/excelencia.2b0a165b42a11cc4aafa.png",
+    "static/media/soporte1.png": "/static/media/soporte1.9934344ab3e1b9da8976.png",
+    "static/media/innovacion.png": "/static/media/innovacion.1132c57c2fbba53f6d2a.png",
+    "static/media/contrato.png": "/static/media/contrato.714ca39753179e48a206.png",
+    "static/media/terreno.png": "/static/media/terreno.7c72a97b0e5537bf669e.png",
+    "static/media/proyectos.png": "/static/media/proyectos.ed4e6e06e261214b5c2a.png",
+    "static/media/vision.png": "/static/media/vision.b21ab76a43f4ba20a260.png",
+    "static/media/compromiso.png": "/static/media/compromiso.65bcad809362961ab098.png",
+    "static/media/barra3.png": "/static/media/barra3.c5788efa20dc9c50017c.png",
+    "static/media/barra10.png": "/static/media/barra10.30c871020f89b96cc479.png",
+    "static/media/mision.png": "/static/media/mision.cec6504ec29d3fef74a9.png",
+    "static/media/barra7.png": "/static/media/barra7.a61fd1b8b9d069fda895.png",
+    "static/media/barra5.png": "/static/media/barra5.735c6908858f9f151531.png",
+    "static/media/barra11.png": "/static/media/barra11.fb488781894bcdd1867a.png",
+    "static/media/barra9.png": "/static/media/barra9.c0a41d6458fd21f8a9d9.png",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "main.18edc310.css.map": "/static/css/main.18edc310.css.map",
+    "main.8c2c2a84.js.map": "/static/js/main.8c2c2a84.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18edc310.css",
+    "static/js/main.8c2c2a84.js"
+  ]
+}

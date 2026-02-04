@@ -1,0 +1,297 @@
+/* 🧭 HEADER GENERAL - Paleta RIDS */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  background: linear-gradient(180deg, #073956 0%, #1a3c47 100%);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  z-index: 1000;
+  transition: all 0.4s ease;
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
+/* Navegación Desktop */
+.nav-links {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-links a {
+  color: #e6eef1;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #00aeef;
+  transform: translateY(-2px);
+}
+
+/* 🔗 Iconos sociales + Econnet Desktop */
+.social-links {
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  gap: 16px; /* separa iconos y link Econnet */
+}
+
+/* Iconos (Instagram / LinkedIn) */
+.social-links a {
+  color: #e6eef1;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Estilo especial para link de texto Econnet */
+.social-links .sister-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+/* Hover genérico (iconos + Econnet) */
+.social-links a:hover {
+  color: #00aeef;
+  transform: scale(1.05);
+}
+
+/* Econnet hover: más pill/badge */
+.social-links .sister-link:hover {
+  background: rgba(0, 174, 239, 0.15);
+  border-color: #00aeef;
+}
+
+/* Header al hacer scroll */
+.header.scrolled {
+  background: linear-gradient(180deg, #09272c 0%, #073956 100%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* 🍔 Botón Hamburguesa */
+.hamburger {
+  display: none;
+  font-size: 1.9rem;
+  color: #e6eef1;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
+}
+
+/* 📱 Menú móvil mejorado */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 75px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 75px);
+  background: rgba(10, 33, 54, 0.75);
+  backdrop-filter: blur(15px) saturate(180%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 90px;
+  gap: 25px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+  transition: all 0.5s ease;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.mobile-menu.open {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  animation: fadeInDown 0.5s ease forwards;
+}
+
+/* ✨ Animación suave de aparición */
+@keyframes fadeInDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 🌈 Enlaces con brillo en menú móvil */
+.mobile-menu a {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.mobile-menu a:hover {
+  background: rgba(0, 174, 239, 0.25);
+  color: #00aeef;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 174, 239, 0.35);
+}
+
+/* 🔗 Bloque de redes y Econnet en móvil */
+.mobile-social-links {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+/* Enlaces dentro de la fila de redes móvil (sobreescribimos un poco lo general) */
+.mobile-social-links a {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Iconos móviles (Instagram / LinkedIn) */
+.mobile-instagram-link svg,
+.mobile-linkedin-link svg {
+  color: #ffffff;
+  font-size: 1.6rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.mobile-instagram-link:hover svg,
+.mobile-linkedin-link:hover svg {
+  color: #00aeef;
+  transform: scale(1.1);
+}
+
+/* Link Econnet en móvil */
+.mobile-sister-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 900px) {
+  .header {
+    padding: 0 30px;
+  }
+  .nav-links {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* Ocultar iconos/redes de desktop en móvil
+     (porque ya están dentro del menú móvil) */
+  .social-links {
+    display: none;
+  }
+}
+
+.faq-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 500;
+}
+
+.faq-icon {
+  font-size: 0.95rem;
+}
+
+/* En mobile, que no se desarme */
+.mobile-menu .faq-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+
+/* 🤖 Bot Intranet Desktop */
+.bot-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.bot-icon {
+  height: 26px;
+  width: auto;
+  display: block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.bot-link:hover {
+  background: rgba(0, 174, 239, 0.15);
+  border-color: rgba(0, 174, 239, 0.65);
+}
+
+.bot-link:hover .bot-icon {
+  transform: scale(1.08);
+  opacity: 0.95;
+}
+
+/* 🤖 Bot Intranet Mobile */
+.mobile-bot-link {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-bot-icon {
+  height: 28px;
+  width: auto;
+  display: block;
+}

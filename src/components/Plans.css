@@ -1,0 +1,267 @@
+/* === PLANS SECTION === */
+.plans-section {
+  background: linear-gradient(180deg, #09272C 0%, #073956 100%);
+  color: #E0F2F8;
+  padding: 6rem 1rem;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Badge superior tipo etiqueta */
+.plans-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.12);
+  color: #38BDF8;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+/* Header / título / texto introductorio */
+.plans-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #E0F2F8;
+  margin-bottom: 0.75rem;
+}
+
+.plans-header p,
+.plans-intro {
+  color: #A7C8D4;
+  max-width: 650px;
+  margin: 0 auto 2.5rem auto;
+  font-size: 1rem;
+}
+
+/* === CTA SUPERIOR === */
+.plans-cta-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+/* Botones CTA genéricos */
+.cta-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.cta-button-primary {
+  background: #0EA5E9;
+  color: #FFFFFF;
+  border-color: #0EA5E9;
+}
+
+.cta-button-primary:hover {
+  background: #38BDF8;
+  border-color: #38BDF8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(56, 189, 248, 0.4);
+}
+
+.cta-button-secondary {
+  background: transparent;
+  color: #E0F2F8;
+  border-color: rgba(148, 163, 184, 0.7);
+}
+
+.cta-button-secondary:hover {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: #0EA5E9;
+  transform: translateY(-2px);
+}
+
+/* === CARDS === */
+.plans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.plan-card {
+  background: linear-gradient(180deg, #0D3A46 0%, #073956 100%);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  border-radius: 16px;
+  width: 300px;
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+  border-color: #0EA5E9;
+  box-shadow: 0 15px 35px rgba(14, 165, 233, 0.3);
+}
+
+/* === PLAN TEXT === */
+.plan-card h3 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.plan-card .description {
+  font-style: italic;
+  color: #A7C8D4;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+/* === PRICE === */
+.price-block {
+  margin-bottom: 1.5rem;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #E0F2F8;
+}
+
+.subprice {
+  font-size: 0.9rem;
+  color: #38BDF8;
+}
+
+/* === FEATURES === */
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  text-align: left;
+  color: #A7C8D4;
+}
+
+.plan-card li {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+/* === BUTTONS POR PLAN === */
+.plan-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin: 1.5rem auto 0;
+  background: #0EA5E9;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
+  text-decoration: none;
+}
+
+.plan-button:hover {
+  background: #38BDF8;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(56, 189, 248, 0.45);
+}
+
+/* === HIGHLIGHTED PLAN BUTTON === */
+.highlight .plan-button {
+  background: #ffffff;
+  color: #011724;
+  font-weight: 800;
+  width: 95%;
+  padding: 1.2rem 2rem;
+  box-shadow: 0 5px 14px rgba(35, 95, 121, 0.4);
+  margin: 1.5rem auto 0;
+}
+
+.highlight .plan-button:hover {
+  background: #D1E9F7;
+  transform: translateY(-4px);
+}
+
+/* === CTA INFERIOR / BLOQUE CIERRE === */
+.plans-bottom-cta {
+  margin-top: 3rem;
+  padding: 1.8rem 1.5rem;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.plans-bottom-cta h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  color: #E0F2F8;
+}
+
+.plans-bottom-cta p {
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+  color: #A7C8D4;
+}
+
+/* === TEXTO SEO === */
+.plans-seo-text {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #9CA3AF;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .plans-section {
+    padding: 4rem 1rem;
+  }
+
+  .plans-header h2 {
+    font-size: 2rem;
+  }
+
+  .plans-container {
+    gap: 1.5rem;
+  }
+
+  .plan-card {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .plans-cta-top {
+    flex-direction: column;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 320px;
+  }
+}

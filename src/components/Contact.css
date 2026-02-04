@@ -1,0 +1,234 @@
+/* 💬 Contact.css — Versión RIDS refinada */
+body {
+  background: linear-gradient(180deg, #072125 0%, #042a3f 100%);
+  color: #E6EEF1;
+  font-family: "Poppins", sans-serif;
+}
+
+/* 🔷 Sección principal */
+.contact-section {
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(180deg, #051e2c 0%, #0d262e 100%);
+  overflow: visible;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1.2fr;
+  gap: 40px;
+  align-items: flex-start;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 25px;
+}
+
+/* 🧊 FORMULARIO con efecto glass */
+.contact-form {
+  background: rgba(20, 47, 56, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 25px rgba(7, 57, 86, 0.25);
+  padding: 38px;
+  color: #FFFFFF;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(1, 101, 138, 0.25);
+}
+
+.contact-title {
+  font-size: 2.2rem;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+/* 🧾 Inputs */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #E6EEF1;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.95rem;
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #00AEEF;
+  box-shadow: 0 0 15px rgba(2, 111, 151, 0.25);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+/* 🔽 Selector */
+.form-group select {
+  appearance: none;
+  cursor: pointer;
+  background: rgba(255,255,255,0.08);
+}
+
+.form-group select option {
+  color: #FFFFFF;
+  background: #03273b;
+}
+
+/* 🚀 Botón de envío */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #00AEEF, #0090C5);
+  color: #FFFFFF;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 174, 239, 0.3);
+  transition: all 0.25s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #0090C5, #00AEEF);
+  box-shadow: 0 18px 35px rgba(0, 174, 239, 0.4);
+}
+
+/* 📘 Panel derecho (información) */
+.contact-info {
+  background: linear-gradient(180deg, #04283d 0%, #0d262e 100%);
+  color: #FFFFFF;
+  border-radius: 20px;
+  padding: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info h3 {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* 🔹 Bloques internos */
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 14px 16px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  color: #E6EEF1;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.info-item strong {
+  color: #FFFFFF;
+  min-width: 120px;
+}
+
+.info-item:hover {
+  background: rgba(24, 20, 20, 0.1);
+  transform: translateX(4px);
+}
+
+/* 🗺️ Mapa */
+.map-container {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 260px;
+  border: none;
+  border-radius: 12px;
+}
+
+/* 📱 Responsive — SOLO ajuste sin alterar diseño */
+@media (max-width: 980px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  .contact-info {
+    order: -1;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-section {
+    padding: 70px 0;
+  }
+
+  .contact-form,
+  .contact-info {
+    padding: 26px 20px;
+    border-radius: 16px;
+  }
+
+  .contact-title {
+    font-size: 1.8rem;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    font-size: 0.95rem;
+  }
+
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .map-container iframe {
+    height: 220px;
+  }
+}

@@ -1,0 +1,868 @@
+/* Paleta RIDS: color petróleo principal */
+:root {
+  --rids-petroleo: #005f6a;
+  --rids-accent: #206d99;
+  --card-bg: #ffffff;
+  --card-text: #073946; /* texto petróleo oscuro */
+}
+
+/* Fondo sección */
+.sobrenos-section {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at top left,
+    #0f5f74 0%,
+    #04161b 50%,
+    #031017 100%
+  );
+  color: #e8f3f6;
+  font-family: "Poppins", sans-serif;
+  padding: 4rem 1rem 6rem;
+}
+
+/* “manchas” de luz decorativas */
+.sobrenos-section::before,
+.sobrenos-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(70px);
+  opacity: 0.75;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.sobrenos-section::before {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: -80px;
+  background: radial-gradient(
+    circle,
+    rgba(32, 109, 153, 0.55),
+    transparent 70%
+  );
+  animation: haloFloatLeft 18s ease-in-out infinite alternate;
+}
+
+.sobrenos-section::after {
+  width: 380px;
+  height: 380px;
+  bottom: -140px;
+  right: -60px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 95, 106, 0.8),
+    transparent 70%
+  );
+  animation: haloFloatRight 22s ease-in-out infinite alternate;
+}
+
+/* Contenido por encima de los halos */
+.sobrenos-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 🖼 BANNER SOBRE NOSOTROS A TODO EL ANCHO REAL */
+.sobrenos-banner {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  margin-bottom: 2.5rem;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+
+  /* altura grande tipo hero */
+  height: 600px;
+
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeInUp 0.6s ease-out forwards;
+  cursor: default;
+}
+
+.sobrenos-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay con el mensaje del banner */
+.sobrenos-banner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.55)
+  );
+  color: #f6fbfc;
+}
+
+/* Kicker pequeño arriba */
+.sobrenos-banner-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(143, 212, 255, 0.5);
+  color: #e5f7ff;
+  margin-bottom: 0.9rem;
+}
+
+/* Título principal tech */
+.sobrenos-banner-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  background: linear-gradient(
+    120deg,
+    #ffffff,
+    #8fd4ff,
+    #e5f7ff
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.5);
+}
+
+/* Texto descriptivo */
+.sobrenos-banner-text {
+  font-size: 0.98rem;
+  max-width: 620px;
+  margin: 0.3rem auto 1.2rem;
+  opacity: 0.92;
+}
+
+/* Botón CTA tipo neon / tech */
+.sobrenos-banner-cta {
+  margin-top: 0.3rem;
+  padding: 0.65rem 1.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(143, 212, 255, 0.8);
+  background: rgba(2, 20, 30, 0.9);
+  color: #e5f7ff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(143, 212, 255, 0.0);
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.sobrenos-banner-cta-icon {
+  display: inline-block;
+  font-size: 1.1rem;
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.sobrenos-banner-cta:hover {
+  background: rgba(3, 30, 44, 0.95);
+  border-color: #8fd4ff;
+  transform: translateY(-1px);
+  box-shadow: 0 0 22px rgba(143, 212, 255, 0.45);
+}
+
+.sobrenos-banner-cta:hover .sobrenos-banner-cta-icon {
+  transform: translateX(3px);
+}
+
+/* Encabezado */
+.sobrenos-hero {
+  text-align: center;
+  padding: 3.5rem 1rem 2.5rem;
+  margin-bottom: 2rem;
+  color: #eaf6f8;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* entrada suave */
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeInDown 0.7s ease-out forwards;
+}
+
+/* parte superior del hero (badge + botón FAQ) */
+.sobrenos-hero-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.sobrenos-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(0, 95, 106, 0.4);
+  border: 1px solid rgba(232, 243, 246, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.sobrenos-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.22),
+    transparent
+  );
+  transform: translateX(-120%);
+  animation: shimmer 3.2s ease-in-out infinite;
+}
+
+/* Botón que lleva a FAQ */
+.sobrenos-faq-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 243, 246, 0.4);
+  background: rgba(4, 22, 27, 0.6);
+  color: #eaf6f8;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease,
+    box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.sobrenos-faq-header-btn span {
+  opacity: 0.85;
+}
+
+.sobrenos-faq-header-btn::before {
+  content: "?";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(232, 243, 246, 0.16);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.sobrenos-faq-header-btn:hover {
+  background: rgba(4, 27, 35, 0.9);
+  border-color: rgba(232, 243, 246, 0.7);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+.sobrenos-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #f6fbfc;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.03em;
+}
+
+.sobrenos-sub {
+  color: #d7eef2;
+  max-width: 820px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Línea suave bajo el header */
+.sobrenos-hero::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  margin: 1.8rem auto 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(232, 243, 246, 0),
+    rgba(232, 243, 246, 0.9),
+    rgba(232, 243, 246, 0)
+  );
+  opacity: 0.9;
+}
+
+/* Pills servicios */
+.sobrenos-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1.4rem;
+}
+
+.sobrenos-pill {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 243, 246, 0.5);
+  font-size: 0.78rem;
+  color: #eaf6f8;
+  background: rgba(4, 22, 27, 0.4);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+
+  /* entrada escalonada */
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Delays para pills */
+.sobrenos-pill-row .sobrenos-pill:nth-child(1) {
+  animation-delay: 0.15s;
+}
+.sobrenos-pill-row .sobrenos-pill:nth-child(2) {
+  animation-delay: 0.22s;
+}
+.sobrenos-pill-row .sobrenos-pill:nth-child(3) {
+  animation-delay: 0.29s;
+}
+.sobrenos-pill-row .sobrenos-pill:nth-child(4) {
+  animation-delay: 0.36s;
+}
+.sobrenos-pill-row .sobrenos-pill:nth-child(5) {
+  animation-delay: 0.43s;
+}
+.sobrenos-pill-row .sobrenos-pill:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.sobrenos-pill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(143, 212, 255, 0.25),
+    transparent 60%
+  );
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sobrenos-pill:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Grid filas */
+.sobrenos-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.sobrenos-row--top .sobrenos-card {
+  flex: 1 1 45%;
+  min-width: 280px;
+}
+
+.sobrenos-row--bottom .sobrenos-card {
+  flex: 1 1 30%;
+  min-width: 220px;
+}
+
+/* Tarjetas (blancas, texto petróleo) */
+.sobrenos-card {
+  background: var(--card-bg);
+  color: var(--card-text);
+  border-radius: 1rem;
+  padding: 2rem 1.6rem;
+  position: relative;
+  text-align: center;
+  overflow: visible;
+  box-shadow: 0 8px 30px rgba(3, 46, 53, 0.12);
+  transition: transform 0.36s cubic-bezier(0.2, 0.9, 0.3, 1),
+    box-shadow 0.36s ease, filter 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  /* fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* delays para las cards según orden visual */
+.sobrenos-row--top .sobrenos-card:nth-child(1) {
+  animation-delay: 0.08s;
+}
+.sobrenos-row--top .sobrenos-card:nth-child(2) {
+  animation-delay: 0.16s;
+}
+.sobrenos-row--bottom .sobrenos-card:nth-child(1) {
+  animation-delay: 0.24s;
+}
+.sobrenos-row--bottom .sobrenos-card:nth-child(2) {
+  animation-delay: 0.32s;
+}
+.sobrenos-row--bottom .sobrenos-card:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Halo animado */
+.sobrenos-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: 1.05rem;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 95, 106, 0.22),
+    rgba(32, 109, 153, 0.18)
+  );
+  filter: blur(6px);
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.sobrenos-card:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Hover lift */
+.sobrenos-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 50px rgba(3, 46, 53, 0.18);
+  filter: saturate(1.03);
+}
+
+/* Icon wrapper and image */
+.card-icon-wrap {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 14px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 95, 106, 0.06),
+    rgba(32, 109, 153, 0.03)
+  );
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(32, 109, 153, 0.08);
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  display: block;
+  filter: saturate(0.98);
+}
+
+.sobrenos-card:hover .card-icon-wrap {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 22px rgba(32, 109, 153, 0.12);
+}
+
+/* Títulos y textos en color petróleo */
+.sobrenos-card-title {
+  color: var(--rids-petroleo);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.sobrenos-card-text {
+  color: #23484a;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* === FAQ === */
+.sobrenos-faq {
+  max-width: 900px;
+  margin: 2.5rem auto 0;
+  padding: 1.5rem 1.5rem 2rem;
+  border-radius: 1.25rem;
+  background: rgba(4, 19, 25, 0.7);
+  border: 1px solid rgba(232, 243, 246, 0.22);
+  backdrop-filter: blur(10px);
+
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.sobrenos-faq-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+
+.sobrenos-faq-intro {
+  font-size: 0.95rem;
+  color: #d7eef2;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 1.4rem;
+}
+
+.sobrenos-faq-list {
+  margin-top: 0.4rem;
+}
+
+.faq-item {
+  border-radius: 0.9rem;
+  border: 1px solid rgba(232, 243, 246, 0.18);
+  background: rgba(2, 14, 19, 0.85);
+  margin-bottom: 0.7rem;
+  overflow: hidden;
+  transition: border-color 0.25s ease, background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.faq-item--open {
+  border-color: rgba(32, 109, 153, 0.7);
+  background: rgba(3, 22, 30, 0.95);
+  transform: translateY(-2px);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: #e8f3f6;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.faq-question span:first-child {
+  flex: 1;
+  padding-right: 0.5rem;
+}
+
+.faq-icon {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  transition: transform 0.25s ease;
+}
+
+.faq-item--open .faq-icon {
+  transform: rotate(90deg);
+}
+
+.faq-answer {
+  padding: 0 1rem 0.9rem;
+  font-size: 0.9rem;
+  color: #cde5ea;
+  line-height: 1.5;
+}
+
+/* === CTA BLOQUE INFERIOR === */
+.sobrenos-cta {
+  margin-top: 3rem;
+  padding: 2rem 1.5rem;
+  border-radius: 1.25rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(4, 19, 25, 0.7);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(232, 243, 246, 0.25);
+  text-align: center;
+  box-shadow: 0 18px 50px rgba(3, 24, 32, 0.5);
+
+  opacity: 0;
+  transform: translateY(22px);
+  animation: fadeInUp 0.7s ease forwards;
+  animation-delay: 0.7s;
+}
+
+.sobrenos-cta-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f6fbfc;
+  margin-bottom: 0.4rem;
+}
+
+.sobrenos-cta-text {
+  font-size: 0.97rem;
+  color: #d7eef2;
+  max-width: 650px;
+  margin: 0 auto 1.4rem;
+  line-height: 1.6;
+}
+
+.sobrenos-cta-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #e0f2f7;
+}
+
+.sobrenos-cta-bullets li::before {
+  content: "• ";
+  color: #8fd4ff;
+}
+
+/* Botones CTA */
+.sobrenos-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.sobrenos-btn {
+  padding: 0.8rem 1.7rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sobrenos-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 255, 255, 0.25),
+    transparent 60%
+  );
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.sobrenos-btn--primary {
+  background: var(--rids-accent);
+  color: #ffffff;
+  border-color: var(--rids-accent);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.sobrenos-btn--primary:hover {
+  background: #2b7fb3;
+  border-color: #2b7fb3;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
+}
+
+.sobrenos-btn--primary:hover::after {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.sobrenos-btn--secondary {
+  background: transparent;
+  color: #e8f3f6;
+  border-color: rgba(232, 243, 246, 0.6);
+}
+
+.sobrenos-btn--secondary:hover {
+  background: rgba(4, 22, 27, 0.7);
+  border-color: #e8f3f6;
+  transform: translateY(-1px);
+}
+
+/* Texto SEO inferior */
+.sobrenos-seo-text {
+  margin-top: 2.2rem;
+  font-size: 0.85rem;
+  color: #c3dbe0;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1.6;
+
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeInUp 0.65s ease forwards;
+  animation-delay: 0.9s;
+}
+
+/* Small responsive adjustments */
+@media (max-width: 900px) {
+  .sobrenos-banner {
+    height: 300px;
+    margin-bottom: 2rem;
+  }
+
+  .sobrenos-banner-title {
+    font-size: 1.8rem;
+  }
+
+  .sobrenos-banner-text {
+    font-size: 0.85rem;
+    padding: 0 0.5rem;
+  }
+
+  .sobrenos-banner-cta {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+  }
+
+  .sobrenos-hero {
+    padding: 2.5rem 1rem 2rem;
+  }
+
+  .sobrenos-title {
+    font-size: 2.2rem;
+  }
+
+  .sobrenos-cta {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .sobrenos-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .sobrenos-pill-row {
+    gap: 0.4rem;
+  }
+
+  .sobrenos-hero-top {
+    flex-direction: column;
+  }
+}
+
+/* Animaciones keyframes extra */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes haloFloatLeft {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translate(18px, 10px) scale(1.06);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(8px, 20px) scale(1.02);
+    opacity: 0.7;
+  }
+}
+
+@keyframes haloFloatRight {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-16px, -10px) scale(1.05);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(-6px, -18px) scale(1.02);
+    opacity: 0.75;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  60% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* Accesibilidad: reducir animaciones si el usuario lo pide */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition: none !important;
+  }
+}
