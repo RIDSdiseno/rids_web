@@ -131,9 +131,8 @@
 }
 
 /* ================================
-   ÁREA DE MENSAJES
+   ÁREA DE MENSAJES y BURBUJAS
 ================================== */
-
 .chatbot-messages {
   flex: 1;
   padding: 0.8rem;
@@ -141,39 +140,64 @@
   background: linear-gradient(to bottom, #e6f1f4, #f0f7fa);
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.6rem; /* Un poco más de espacio entre burbujas */
 }
 
-.chatbot-message {
+/* Clase base para cualquier mensaje */
+.message {
   max-width: 85%;
-  margin-bottom: 0.2rem;
   padding: 0.65rem 0.9rem;
-  border-radius: 14px;
   font-size: 0.85rem;
   line-height: 1.4;
   word-wrap: break-word;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
-.chatbot-message.from-bot {
+/* Burbuja de la IA (Assistant) */
+.message.assistant {
+  align-self: flex-start;
   background: #ffffff;
   color: #073946;
-  border-bottom-left-radius: 6px;
-  align-self: flex-start;
+  border-radius: 14px 14px 14px 6px; /* Punta abajo izquierda */
 }
 
-.chatbot-message.from-user {
-  margin-left: auto;
+/* Burbuja del Usuario */
+.message.user {
+  align-self: flex-end;
   background: linear-gradient(135deg, #0b5a72, #0f7592);
   color: #ffffff;
-  border-bottom-right-radius: 6px;
-  align-self: flex-end;
+  border-radius: 14px 14px 6px 14px; /* Punta abajo derecha */
 }
 
-/* Estado 'escribiendo...' */
-.chatbot-typing {
-  font-style: italic;
-  opacity: 0.75;
+/* Indicador de carga pro */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 5px;
+}
+
+.typing-indicator span {
+  height: 6px;
+  width: 6px;
+  background: #0b5a72;
+  border-radius: 50%;
+  animation: typing 1s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Agrega una animación simple de typing si quieres */
+@keyframes typing {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
 }
 
 /* ================================
