@@ -1,32 +1,35 @@
 import { useState } from "react";
 import { sendChatToIA } from "../services/ai.service";
 
-// 1. Definimos la estructura del objeto (Contrato de Ingeniería)
 interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
 export const useAI = (sessionId: string) => {
-  // 2. Le decimos a useState que manejará un ARRAY de Messages
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
 
   const ask = async (text: string) => {
     const userMsg: Message = { role: "user", content: text };
-    
-    // Ahora 'prev' sabe que es de tipo Message[] y no dará error
     setMessages((prev) => [...prev, userMsg]);
     setLoading(true);
 
     try {
+      // 1. Llamamos al servicio (que ya debería traer reply, intent y action)
       const data = await sendChatToIA(text, sessionId);
-      if (data.success) {
+      
+      if (data.ok || data.success) {
         const aiMsg: Message = { role: "assistant", content: data.reply };
         setMessages((prev) => [...prev, aiMsg]);
+        
+        // 2. VITAL: Retornamos la data completa al componente Chatbot.jsx
+        // para que pueda leer data.action y ejecutar la redirección.
+        return data; 
       }
     } catch (error) {
       console.error("Error en useAI:", error);
+      return null;
     } finally {
       setLoading(false);
     }
