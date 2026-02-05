@@ -16,20 +16,20 @@ export const useAI = (sessionId: string) => {
     setLoading(true);
 
     try {
-      // 1. Llamamos al servicio (que ya debería traer reply, intent y action)
       const data = await sendChatToIA(text, sessionId);
       
-      if (data.ok || data.success) {
+      // Verificamos data.success o data.ok según lo que envíe tu backend
+      if (data.success || data.ok) {
         const aiMsg: Message = { role: "assistant", content: data.reply };
         setMessages((prev) => [...prev, aiMsg]);
-        
-        // 2. VITAL: Retornamos la data completa al componente Chatbot.jsx
-        // para que pueda leer data.action y ejecutar la redirección.
+
+        // ✅ VITAL: Retornamos la data completa para que Chatbot.jsx 
+        // pueda leer data.action y ejecutar la redirección.
         return data; 
       }
     } catch (error) {
       console.error("Error en useAI:", error);
-      return null;
+      return null; // Retornamos algo para evitar errores de undefined
     } finally {
       setLoading(false);
     }
