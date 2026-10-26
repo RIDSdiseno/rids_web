@@ -1,26 +1,26 @@
 // src/components/Contact.jsx
-import React, { useState } from "react";
-import "./Contact.css";
 
-import {
-  Link,
-} from "react-router-dom";
+import React, { useState } from "react";
+
+import { Link } from "react-router-dom";
+
+import "./Contact.css";
 
 const API_BASE_URL =
   process.env.REACT_APP_API_BASE_URL || "http://localhost:4000";
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    nombre: "",
-    email: "",
-    categoria: "",
-    mensaje: "",
-  });
+const INITIAL_FORM_DATA = {
+  nombre: "",
+  email: "",
+  categoria: "",
+  mensaje: "",
+  privacyRead: false,
+};
 
-  const [
-    showMap,
-    setShowMap,
-  ] = useState(false);
+export default function Contact() {
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+
+  const [showMap, setShowMap] = useState(false);
 
   const [status, setStatus] = useState({
     type: null,
@@ -28,71 +28,89 @@ export default function Contact() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(null);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    if (success !== null) setSuccess(null); // limpiar mensaje al seguir escribiendo
+    const { name, value, type, checked } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+
+      [name]: type === "checkbox" ? checked : value,
+    }));
+
+    if (status.type !== null) {
+      setStatus({
+        type: null,
+        message: "",
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    setLoading(true);
 
     setStatus({
       type: null,
       message: "",
     });
 
+    // ========================================
+    // PRIVACIDAD
+    // ========================================
+
+    if (!formData.privacyRead) {
+      setStatus({
+        type: "error",
+        message:
+          "Debes confirmar que has leído la Política de Privacidad antes de enviar el mensaje.",
+      });
+
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/api/contact`,
-        {
-          method: "POST",
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: "POST",
 
-          headers: {
-            "Content-Type": "application/json",
-          },
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-          body: JSON.stringify(formData),
-        }
-      );
+        body: JSON.stringify(formData),
+      });
 
-      const data = await response.json();
+      let data = null;
+
+      try {
+        data = await response.json();
+      } catch {
+        data = null;
+      }
 
       if (response.ok) {
         setStatus({
           type: "success",
-          message:
-            data?.message ||
-            "¡Mensaje enviado con éxito!",
+
+          message: data?.message || "¡Mensaje enviado con éxito!",
         });
 
-        setFormData({
-          nombre: "",
-          email: "",
-          categoria: "",
-          mensaje: "",
-        });
+        setFormData(INITIAL_FORM_DATA);
       } else {
         setStatus({
           type: "error",
-          message:
-            data?.error ||
-            "No fue posible enviar el mensaje.",
+
+          message: data?.error || "No fue posible enviar el mensaje.",
         });
       }
     } catch (error) {
-      console.error(
-        "Error enviando formulario:",
-        error
-      );
+      console.error("Error enviando formulario:", error);
 
       setStatus({
         type: "error",
-        message:
-          "No fue posible conectar con el servidor. Intenta nuevamente.",
+
+        message: "No fue posible conectar con el servidor. Intenta nuevamente.",
       });
     } finally {
       setLoading(false);
@@ -102,12 +120,18 @@ export default function Contact() {
   return (
     <section className="contact-section" id="contacto">
       <div className="contact-container">
-        {/* FORMULARIO PRINCIPAL */}
+        {/* ========================================
+            FORMULARIO PRINCIPAL
+        ======================================== */}
+
         <form className="contact-form" onSubmit={handleSubmit}>
           <h2 className="contact-title">Contáctanos</h2>
 
+          {/* NOMBRE */}
+
           <div className="form-group">
             <label htmlFor="nombre">Nombre completo</label>
+
             <input
               id="nombre"
               type="text"
@@ -122,8 +146,11 @@ export default function Contact() {
             />
           </div>
 
+          {/* EMAIL */}
+
           <div className="form-group">
             <label htmlFor="email">Correo electrónico</label>
+
             <input
               id="email"
               type="email"
@@ -137,8 +164,11 @@ export default function Contact() {
             />
           </div>
 
+          {/* CATEGORÍA */}
+
           <div className="form-group">
             <label htmlFor="categoria">Categoría de consulta</label>
+
             <select
               id="categoria"
               name="categoria"
@@ -147,41 +177,58 @@ export default function Contact() {
               required
             >
               <option value="">Selecciona una categoría...</option>
+
               <option value="Atención de Emergencias. SOS Soporte.cl">
                 Atención de Emergencias. SOS Soporte.cl
               </option>
+
               <option value="Instalación y revisión de equipos">
                 Instalación y revisión de equipos
               </option>
+
               <option value="Mantención de red y equipos computacionales">
                 Mantención de red y equipos computacionales
               </option>
+
               <option value="Asesoría TI Storage y respaldos">
                 Asesoría TI Storage y respaldos
               </option>
+
               <option value="Manutenciones Lógicas y Físicas">
                 Manutenciones Lógicas y Físicas
               </option>
-              <option value="Cableado estructurado">Cableado estructurado</option>
+
+              <option value="Cableado estructurado">
+                Cableado estructurado
+              </option>
+
               <option value="Asesoría TI Servidores Web">
                 Asesoría TI Servidores Web
               </option>
+
               <option value="Configuración de Servidores y correos">
                 Configuración de Servidores y correos
               </option>
+
               <option value="Configuración de Impresoras de red">
                 Configuración de Impresoras de red
               </option>
+
               <option value="Diseño Web a medida">Diseño Web a medida</option>
+
               <option value="Plataformas de sistemas web">
                 Plataformas de sistemas web
               </option>
+
               <option value="Migración de correos">Migración de correos</option>
             </select>
           </div>
 
+          {/* MENSAJE */}
+
           <div className="form-group">
             <label htmlFor="mensaje">Mensaje</label>
+
             <textarea
               id="mensaje"
               name="mensaje"
@@ -194,43 +241,82 @@ export default function Contact() {
             />
           </div>
 
+          {/* ========================================
+              AVISO DE PRIVACIDAD
+          ======================================== */}
+
           <div className="contact-privacy-notice">
             <p>
-              Los datos proporcionados
-              serán utilizados por RIDS
-              para gestionar y responder
-              tu solicitud. Puedes conocer
-              cómo tratamos tu información
-              y cómo ejercer tus derechos
-              en nuestra{" "}
-
-              <Link to="/politica-privacidad">
-                Política de Privacidad
-              </Link>
-              .
+              Los datos proporcionados serán utilizados por RIDS para gestionar
+              y responder tu solicitud. Puedes conocer cómo tratamos tu
+              información y cómo ejercer tus derechos en nuestra{" "}
+              <Link to="/politica-privacidad">Política de Privacidad</Link>.
             </p>
           </div>
+
+          {/* ========================================
+              CONFIRMACIÓN DE LECTURA
+          ======================================== */}
+
+          <div className="contact-privacy-check">
+            <label htmlFor="privacyRead" className="contact-privacy-label">
+              <input
+                id="privacyRead"
+                type="checkbox"
+                name="privacyRead"
+                checked={formData.privacyRead}
+                onChange={handleChange}
+                required
+              />
+
+              <span>
+                He leído la{" "}
+                <Link
+                  to="/politica-privacidad"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Política de Privacidad
+                </Link>
+                .
+              </span>
+            </label>
+          </div>
+
+          {/* ========================================
+              ESTADO DEL ENVÍO
+          ======================================== */}
+
+          {status.message && (
+            <div
+              className={
+                status.type === "success"
+                  ? "contact-status contact-status-success"
+                  : "contact-status contact-status-error"
+              }
+              role={status.type === "error" ? "alert" : "status"}
+            >
+              {status.message}
+            </div>
+          )}
+
+          {/* BOTÓN */}
 
           <button type="submit" className="submit-btn" disabled={loading}>
             {loading ? "Enviando..." : "Enviar"}
           </button>
-
-          {success === true && (
-            <p className="success-msg">¡Mensaje enviado con éxito!</p>
-          )}
-          {success === false && (
-            <p className="error-msg">
-              Error al enviar el mensaje. Intenta nuevamente.
-            </p>
-          )}
         </form>
 
-        {/* PANEL DE INFORMACIÓN */}
+        {/* ========================================
+            PANEL DE INFORMACIÓN
+        ======================================== */}
+
         <div className="contact-info">
           <h3>Información de contacto</h3>
 
           <div className="info-item">
             <strong>Ubicación:</strong>
+
             <span>
               La Concepción 65, Oficina 1003, Providencia, Santiago, Chile
             </span>
@@ -238,45 +324,48 @@ export default function Contact() {
 
           <div className="info-item">
             <strong>Teléfonos:</strong>
+
             <span>
-              <a href="tel:+56973713869">+56 9 7371 3869</a> <br />
+              <a href="tel:+56973713869">+56 9 7371 3869</a>
+
+              <br />
+
               <a href="tel:+56988076593">+56 9 8807 6593</a>
             </span>
           </div>
 
           <div className="info-item">
             <strong>Correos:</strong>
+
             <span>
-              <a href="mailto:soporte@rids.cl">soporte@rids.cl</a> <br />
-              <a href="mailto:carenas@rids.cl">carenas@rids.cl</a> <br />
+              <a href="mailto:soporte@rids.cl">soporte@rids.cl</a>
+
+              <br />
+
+              <a href="mailto:carenas@rids.cl">carenas@rids.cl</a>
             </span>
           </div>
 
+          {/* MAPA */}
+
           <div className="info-item info-map">
             <strong>Mapa:</strong>
+
             <div className="map-container">
               {!showMap ? (
                 <div className="map-privacy-placeholder">
-                  <div className="map-privacy-icon">
-                    📍
-                  </div>
+                  <div className="map-privacy-icon">📍</div>
 
-                  <h4>
-                    Ubicación de RIDS
-                  </h4>
+                  <h4>Ubicación de RIDS</h4>
 
                   <p>
-                    El mapa es proporcionado
-                    por Google Maps. Al mostrarlo
-                    se establecerá una conexión
-                    con servicios de Google.
+                    El mapa es proporcionado por Google Maps. Al mostrarlo se
+                    establecerá una conexión con servicios de Google.
                   </p>
 
                   <button
                     type="button"
-                    onClick={() =>
-                      setShowMap(true)
-                    }
+                    onClick={() => setShowMap(true)}
                     className="map-show-btn"
                   >
                     Mostrar mapa
