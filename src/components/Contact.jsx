@@ -2,6 +2,10 @@
 import React, { useState } from "react";
 import "./Contact.css";
 
+import {
+  Link,
+} from "react-router-dom";
+
 const API_BASE_URL =
   process.env.REACT_APP_API_BASE_URL || "http://localhost:4000";
 
@@ -11,6 +15,16 @@ export default function Contact() {
     email: "",
     categoria: "",
     mensaje: "",
+  });
+
+  const [
+    showMap,
+    setShowMap,
+  ] = useState(false);
+
+  const [status, setStatus] = useState({
+    type: null,
+    message: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -23,27 +37,66 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setLoading(true);
 
+    setStatus({
+      type: null,
+      message: "",
+    });
+
     try {
-      const response = await fetch(`${API_BASE_URL}/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData), // { nombre, email, categoria, mensaje }
-      });
+      const response = await fetch(
+        `${API_BASE_URL}/api/contact`,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
 
       if (response.ok) {
-        setSuccess(true);
-        setFormData({ nombre: "", email: "", categoria: "", mensaje: "" });
+        setStatus({
+          type: "success",
+          message:
+            data?.message ||
+            "¡Mensaje enviado con éxito!",
+        });
+
+        setFormData({
+          nombre: "",
+          email: "",
+          categoria: "",
+          mensaje: "",
+        });
       } else {
-        setSuccess(false);
+        setStatus({
+          type: "error",
+          message:
+            data?.error ||
+            "No fue posible enviar el mensaje.",
+        });
       }
     } catch (error) {
-      console.error("Error enviando formulario:", error);
-      setSuccess(false);
-    }
+      console.error(
+        "Error enviando formulario:",
+        error
+      );
 
-    setLoading(false);
+      setStatus({
+        type: "error",
+        message:
+          "No fue posible conectar con el servidor. Intenta nuevamente.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -62,6 +115,9 @@ export default function Contact() {
               placeholder="Tu nombre completo"
               value={formData.nombre}
               onChange={handleChange}
+              minLength={2}
+              maxLength={120}
+              autoComplete="name"
               required
             />
           </div>
@@ -71,10 +127,12 @@ export default function Contact() {
             <input
               id="email"
               type="email"
-              name="email" // 👈 ahora se llama email (coincide con la API)
+              name="email"
               placeholder="tuemail@ejemplo.com"
               value={formData.email}
               onChange={handleChange}
+              maxLength={254}
+              autoComplete="email"
               required
             />
           </div>
@@ -130,8 +188,27 @@ export default function Contact() {
               placeholder="Escribe tu mensaje aquí..."
               value={formData.mensaje}
               onChange={handleChange}
+              minLength={5}
+              maxLength={5000}
               required
-            ></textarea>
+            />
+          </div>
+
+          <div className="contact-privacy-notice">
+            <p>
+              Los datos proporcionados
+              serán utilizados por RIDS
+              para gestionar y responder
+              tu solicitud. Puedes conocer
+              cómo tratamos tu información
+              y cómo ejercer tus derechos
+              en nuestra{" "}
+
+              <Link to="/politica-privacidad">
+                Política de Privacidad
+              </Link>
+              .
+            </p>
           </div>
 
           <button type="submit" className="submit-btn" disabled={loading}>
@@ -172,20 +249,48 @@ export default function Contact() {
             <span>
               <a href="mailto:soporte@rids.cl">soporte@rids.cl</a> <br />
               <a href="mailto:carenas@rids.cl">carenas@rids.cl</a> <br />
-              <a href="mailto:informaciones@rids.cl">informaciones@rids.cl</a>
             </span>
           </div>
 
           <div className="info-item info-map">
             <strong>Mapa:</strong>
             <div className="map-container">
-              <iframe
-                title="Ubicación RIDS"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.014552870874!2d-70.61518872451903!3d-33.42280589778254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf640dc37b43%3A0xf7b5d4def64fe908!2sLa%20Concepci%C3%B3n%2065%2C%20Oficina%201003%2C%20Providencia%2C%20Santiago%2C%20Chile!5e0!3m2!1ses!2scl!4v1730740814456!5m2!1ses!2scl"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+              {!showMap ? (
+                <div className="map-privacy-placeholder">
+                  <div className="map-privacy-icon">
+                    📍
+                  </div>
+
+                  <h4>
+                    Ubicación de RIDS
+                  </h4>
+
+                  <p>
+                    El mapa es proporcionado
+                    por Google Maps. Al mostrarlo
+                    se establecerá una conexión
+                    con servicios de Google.
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setShowMap(true)
+                    }
+                    className="map-show-btn"
+                  >
+                    Mostrar mapa
+                  </button>
+                </div>
+              ) : (
+                <iframe
+                  title="Ubicación RIDS"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.014552870874!2d-70.61518872451903!3d-33.42280589778254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf640dc37b43%3A0xf7b5d4def64fe908!2sLa%20Concepci%C3%B3n%2065%2C%20Oficina%201003%2C%20Providencia%2C%20Santiago%2C%20Chile!5e0!3m2!1ses!2scl!4v1730740814456!5m2!1ses!2scl"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              )}
             </div>
           </div>
         </div>

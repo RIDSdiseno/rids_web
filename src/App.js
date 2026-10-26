@@ -1,3 +1,4 @@
+// src/App.js
 import React, { useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -12,9 +13,13 @@ import SobreNosotros from "./components/SobreNosotros";
 import WhatsAppButton from "./components/WhatsAppButton";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Chatbot from "./components/Chatbot";
+import CookiesPolicy from "./components/CookiesPolicy";
+import LegalNotice from "./components/LegalNotice";
 
 // 🟦 Importa tu logo desde assets
 import logoRids from "./assets/logo-rids.png";
+
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 function App() {
   useEffect(() => {
@@ -55,6 +60,21 @@ function App() {
         <Route path="/sobrenosotros" element={<SobreNosotros />} />
         <Route path="/servicios1" element={<Servicios1 />} />
         <Route path="/planes" element={<Planes />} />
+        <Route
+          path="/politica-privacidad"
+          element={
+            <PrivacyPolicy />
+          }
+        />
+        <Route
+          path="/cookies"
+          element={<CookiesPolicy />}
+        />
+
+        <Route
+          path="/aviso-legal"
+          element={<LegalNotice />}
+        />
       </Routes>
 
       {/* ✅ Footer global visible en todas las páginas */}
@@ -62,7 +82,7 @@ function App() {
 
       {/* 💬 Botón de WhatsApp */}
       <WhatsAppButton />
-      
+
       {/* 🤖 Tu nuevo asistente con IA 2.0 */}
       <Chatbot />
     </Router>

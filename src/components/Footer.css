@@ -38,3 +38,134 @@
   font-size: 0.9rem;
   opacity: 0.9;
 }
+
+/* ==========================================
+   FOOTER - ZONA INFERIOR CENTRADA
+========================================== */
+
+.footer-bottom {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  gap: 10px;
+
+  padding: 24px 110px 40px;
+
+  text-align: center;
+}
+
+/* ==========================================
+   DATOS EMPRESA
+========================================== */
+
+.footer-company-info {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  gap: 4px;
+
+  text-align: center;
+}
+
+.footer-company-info p {
+  margin: 0;
+}
+
+.footer-company-legal {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* ==========================================
+   ENLACES LEGALES
+========================================== */
+
+.footer-legal-links {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  width: 100%;
+
+  gap: 8px 20px;
+
+  text-align: center;
+}
+
+.footer-legal-links a {
+  color: inherit;
+
+  font-size: 0.78rem;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  transition:
+    opacity 0.2s ease,
+    text-decoration-color 0.2s ease;
+}
+
+.footer-legal-links a:hover {
+  opacity: 0.75;
+
+  text-decoration: underline;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1024px) {
+  .footer-bottom {
+    padding:
+      24px 100px 40px;
+  }
+}
+
+/* ==========================================
+   MÓVIL
+========================================== */
+
+@media (max-width: 768px) {
+  .footer-bottom {
+    gap: 12px;
+
+    /*
+      El espacio inferior evita que chatbot
+      y WhatsApp cubran contenido legal.
+    */
+    padding:
+      24px 20px 8rem;
+  }
+
+  .footer-company-info {
+    width: 100%;
+  }
+
+  .footer-legal-links {
+    width: 100%;
+
+    gap:
+      10px 14px;
+  }
+
+  .footer-legal-links a {
+    white-space: normal;
+  }
+}
