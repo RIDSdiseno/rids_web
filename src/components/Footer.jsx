@@ -11,9 +11,7 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 
-import {
-  Link,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./Footer.css";
 
@@ -24,12 +22,9 @@ export default function Footer() {
       className="footer bg-gradient-to-b from-[#073956] to-[#09272C] text-[#E6EEF1] py-12 font-[Poppins]"
     >
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
-
         {/* Columna 1: Nosotros */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">
-            Nosotros
-          </h3>
+          <h3 className="text-lg font-semibold mb-3">Nosotros</h3>
 
           <div className="flex items-center mb-2">
             <img
@@ -40,23 +35,18 @@ export default function Footer() {
           </div>
 
           <p className="text-sm leading-relaxed opacity-90">
-            Somos una empresa que brinda servicios
-            tecnológicos para pequeñas y medianas
-            empresas.
+            Somos una empresa que brinda servicios tecnológicos para pequeñas y
+            medianas empresas.
           </p>
         </div>
 
         {/* Columna 2: Contacto */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">
-            Contacto
-          </h3>
+          <h3 className="text-lg font-semibold mb-3">Contacto</h3>
 
           <p className="flex items-start gap-2 text-sm opacity-90">
             <FaMapMarkerAlt className="mt-1" />
-
-            La Concepción 65, oficina 1003,
-            Providencia, Región Metropolitana
+            La Concepción 65, oficina 1003, Providencia, Región Metropolitana
           </p>
 
           <p className="flex items-center gap-2 text-sm opacity-90 mt-2">
@@ -106,24 +96,20 @@ export default function Footer() {
 
         {/* Columna 3: Trabaja con nosotros */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">
-            Trabaja con nosotros
-          </h3>
+          <h3 className="text-lg font-semibold mb-3">Trabaja con nosotros</h3>
 
           <p className="text-sm opacity-90 leading-relaxed">
-            Si deseas trabajar con nosotros,
-            contáctanos al{" "}
-
+            Si deseas trabajar con nosotros, contáctanos al{" "}
             <a
               href="tel:+56988076593"
               className="text-[#00AEEF] hover:underline"
             >
               +56 9 8807 6593
-            </a>.
+            </a>
+            .
           </p>
 
           <div className="flex gap-5 mt-5">
-
             <a
               href="https://www.linkedin.com/in/asesor%C3%ADas-rids-ltda-348522107/?originalSubdomain=cl"
               target="_blank"
@@ -153,10 +139,8 @@ export default function Footer() {
             >
               <FaGlobe />
             </a>
-
           </div>
         </div>
-
       </div>
 
       {/* Línea separadora */}
@@ -164,12 +148,10 @@ export default function Footer() {
 
       {/* Zona legal inferior */}
       <div className="footer-bottom">
-
         <div className="footer-company-info">
           <p>
-            © {new Date().getFullYear()} RIDS
-            {" "}
-            Soluciones Integrales de Tecnología
+            © {new Date().getFullYear()} RIDS Soluciones Integrales de
+            Tecnología
           </p>
 
           <p className="footer-company-legal">
@@ -178,23 +160,26 @@ export default function Footer() {
         </div>
 
         <div className="footer-legal-links">
-          <Link to="/politica-privacidad">
-            Política de Privacidad
-          </Link>
+          <Link to="/politica-privacidad">Política de Privacidad</Link>
 
-          <Link to="/cookies">
-            Política de Cookies
-          </Link>
+          <Link to="/cookies">Política de Cookies</Link>
 
-          <Link to="/aviso-legal">
-            Aviso Legal
-          </Link>
+          <Link to="/aviso-legal">Aviso Legal</Link>
 
-          <Link to="/politica-privacidad#derechos">
-            Ejercer derechos
-          </Link>
+          <Link to="/politica-privacidad#derechos">Ejercer derechos</Link>
+
+          <button
+            type="button"
+            className="footer-cookie-settings"
+            onClick={() => {
+              localStorage.removeItem("rids-cookie-consent");
+
+              window.location.reload();
+            }}
+          >
+            Configurar cookies
+          </button>
         </div>
-
       </div>
     </footer>
   );
