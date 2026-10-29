@@ -1,6 +1,6 @@
 const API_URL =
     process.env.REACT_APP_CRM_API_URL ||
-    "http://localhost:4000/api";
+    "http://localhost:4000/api" || "https://rids-intranet-backend-production.up.railway.app/api";
 
 async function parseResponse(response) {
     let data = null;
