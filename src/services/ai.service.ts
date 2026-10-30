@@ -1,8 +1,8 @@
 // src/services/ai.service.ts
 
 // Usamos la URL de Railway para producción y localhost solo como respaldo para desarrollo
-//const API_URL = "https://ridsweb-backend-production.up.railway.app/api/ia";
-const API_URL = "http://localhost:4000";
+const API_URL = "https://ridsweb-backend-production.up.railway.app/api/ia";
+// const API_URL = "http://localhost:4000";
 
 /* =====================================================
    ENVIAR MENSAJE A RIDSI
