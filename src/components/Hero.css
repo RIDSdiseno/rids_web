@@ -2,6 +2,12 @@
 .hero-section {
   position: relative;
   height: 100vh;
+  /* respaldo para navegadores antiguos */
+  height: 100svh;
+  /* alto real visible en celulares */
+  padding-top: 75px;
+  /* espacio del header fijo */
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,6 +58,8 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 700;
+  text-align: center;
+  padding: 0 16px;
   text-shadow: 0 0 15px rgba(0, 174, 239, 0.6);
   transition: transform 0.5s ease, color 0.5s ease;
 }
@@ -63,12 +71,48 @@
 
 /* Animación */
 @keyframes fadeInHero {
-  from { opacity: 0; transform: scale(1.05); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Responsive */
+/* 📱 Responsive */
 @media (max-width: 768px) {
-  .hero-container { flex-direction: column; }
-  .hero-panel { height: 25vh; }
+  .hero-container {
+    flex-direction: column;
+  }
+
+  /* Los 4 paneles se reparten el alto disponible (sin 25vh fijo) */
+  .hero-panel {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .hero-panel h2 {
+    font-size: clamp(1.4rem, 7vw, 2rem);
+    letter-spacing: 1px;
+  }
+}
+
+/* En pantallas táctiles no hay hover: evita que un toque agrande un panel y descuadre los demás */
+@media (hover: none) {
+  .hero-panel:hover {
+    flex: 1;
+    filter: none;
+  }
+
+  .hero-panel:hover h2 {
+    transform: none;
+    color: #00AEEF;
+  }
+
+  .hero-panel:hover .overlay {
+    background: linear-gradient(180deg, rgba(9, 39, 44, 0.5), rgba(7, 57, 86, 0.9));
+  }
 }

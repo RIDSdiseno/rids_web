@@ -127,7 +127,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 90px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  overflow-y: auto;
   gap: 25px;
   opacity: 0;
   pointer-events: none;
@@ -322,4 +324,17 @@
 .mobile-menu .ley-link.active {
   background: #00aeef;
   color: #fff;
+}
+
+/* En el menú móvil, "Ley 21.719" del mismo tamaño que las demás opciones */
+.mobile-menu .ley-link {
+  padding: 12px 25px;
+  border-radius: 12px;
+  background: rgba(0, 174, 239, 0.12);
+}
+
+@media (max-width: 400px) {
+  .mobile-menu .ley-link {
+    padding: 10px 22px;
+  }
 }

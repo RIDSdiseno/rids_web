@@ -88,6 +88,13 @@ export default function Header() {
             <RouterLink to="/servicios1">Servicios</RouterLink>
             <RouterLink to="/planes">Planes</RouterLink>
 
+            <RouterLink
+              to="/analizador-ley-21719"
+              className={`ley-link ${location.pathname === "/analizador-ley-21719" ? "active" : ""}`}
+            >
+              Ley 21.719
+            </RouterLink>
+
             <RouterLink to="/#faq-rids" className="faq-link">
               <FaQuestionCircle className="faq-icon" />
               <span>FAQ</span>
@@ -176,6 +183,14 @@ export default function Header() {
 
             <RouterLink to="/planes" onClick={closeMenu}>
               Planes
+            </RouterLink>
+
+            <RouterLink
+              to="/analizador-ley-21719"
+              onClick={closeMenu}
+              className="ley-link"
+            >
+              Ley 21.719
             </RouterLink>
 
             <ScrollLink
