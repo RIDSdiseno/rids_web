@@ -1,0 +1,626 @@
+/* AnalizadorLey21719.css — formato de rids.cl (azul petróleo, Poppins, acento celeste).
+   Todas las clases llevan el prefijo .al- para no chocar con los demás componentes. */
+.al-raiz {
+    --al-profundo: #09272c;
+    --al-azul: #073956;
+    --al-azul-2: #032a41;
+    --al-gris-azul: #1a3c47;
+    --al-celeste: #00aeef;
+    --al-celeste-2: #0090c8;
+    --al-texto: #e6eef1;
+    --al-suave: rgba(230, 238, 241, .72);
+    --al-tenue: rgba(230, 238, 241, .5);
+    --al-linea: rgba(255, 255, 255, .1);
+    --al-panel: rgba(255, 255, 255, .04);
+    --al-ok: #34c38f;
+    --al-parcial: #f0b429;
+    --al-falla: #ff6b5e;
+    font-family: Poppins, system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--al-texto);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+.al-raiz *,
+.al-raiz *::before,
+.al-raiz *::after {
+    box-sizing: border-box;
+}
+
+.al-raiz {
+    background: var(--al-profundo);
+}
+
+.al-contenedor {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- Encabezado del análisis ---------- */
+.al-hero {
+    background: linear-gradient(rgb(9, 39, 44), rgb(7, 57, 86));
+    padding-block: 64px 80px;
+}
+
+/* El Header de rids.cl es fijo (75 px): el encabezado del analizador empieza debajo */
+.al-en-rids .al-hero {
+    padding-top: calc(75px + 56px);
+}
+
+.al-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 470px);
+    gap: 56px;
+    align-items: start;
+}
+
+.al-etiqueta {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--al-celeste);
+    border: 1px solid rgba(0, 174, 239, .45);
+    border-radius: 999px;
+    padding: 6px 14px;
+}
+
+.al-hero h1 {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.15;
+    font-weight: 700;
+    margin: 22px 0 18px;
+    text-wrap: balance;
+    color: #fff;
+}
+
+.al-hero h1 span {
+    color: var(--al-celeste);
+}
+
+.al-bajada {
+    font-size: 17px;
+    color: var(--al-suave);
+    margin: 0 0 26px;
+    max-width: 560px;
+}
+
+.al-bajada strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.al-ventajas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.al-ventajas li {
+    position: relative;
+    padding-left: 28px;
+    font-size: 15px;
+    color: var(--al-texto);
+}
+
+.al-ventajas li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 14px;
+    height: 8px;
+    border-left: 2px solid var(--al-celeste);
+    border-bottom: 2px solid var(--al-celeste);
+    transform: rotate(-45deg);
+}
+
+/* ---------- Tarjeta (mismo estilo que el formulario de contacto de rids.cl) ---------- */
+.al-tarjeta {
+    background: var(--al-panel);
+    border: 1px solid var(--al-linea);
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+    min-height: 420px;
+}
+
+.al-tarjeta h2 {
+    font-size: 20px;
+    margin: 0 0 20px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.al-campo {
+    display: block;
+    margin-bottom: 14px;
+}
+
+.al-campo span {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--al-texto);
+}
+
+.al-campo em {
+    font-style: normal;
+    color: var(--al-tenue);
+    font-weight: 400;
+}
+
+.al-campo input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    font: inherit;
+    font-size: 15px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .06);
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.al-campo input::placeholder {
+    color: var(--al-tenue);
+}
+
+.al-campo input:focus {
+    outline: none;
+    border-color: var(--al-celeste);
+    box-shadow: 0 0 0 3px rgba(0, 174, 239, .2);
+}
+
+.al-fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.al-check {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13px;
+    color: var(--al-suave);
+    margin: 6px 0 10px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid var(--al-linea);
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+.al-check input {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--al-celeste);
+    flex: none;
+}
+
+.al-check a,
+.al-alcance a {
+    color: var(--al-celeste);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.al-check a:hover {
+    text-decoration: underline;
+}
+
+.al-oculto {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.al-boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    margin-top: 8px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--al-celeste), var(--al-celeste-2));
+    color: #fff;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0, 174, 239, .3);
+    transition: filter .15s, transform .05s;
+}
+
+.al-boton:hover {
+    filter: brightness(1.08);
+}
+
+.al-boton:active {
+    transform: translateY(1px);
+}
+
+.al-boton:focus-visible,
+.al-check input:focus-visible {
+    outline: 3px solid rgba(0, 174, 239, .45);
+    outline-offset: 2px;
+}
+
+.al-secundario {
+    background: transparent;
+    color: var(--al-texto);
+    border: 1px solid rgba(255, 255, 255, .25);
+    box-shadow: none;
+}
+
+.al-secundario:hover {
+    background: rgba(255, 255, 255, .06);
+    filter: none;
+}
+
+.al-error {
+    color: #ffb3ab;
+    background: rgba(255, 107, 94, .12);
+    border: 1px solid rgba(255, 107, 94, .3);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+    margin: 10px 0 0;
+}
+
+.al-nota {
+    font-size: 12px;
+    color: var(--al-tenue);
+    margin: 12px 0 0;
+}
+
+/* ---------- Progreso ---------- */
+.al-progreso ol {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+    display: grid;
+    gap: 16px;
+}
+
+.al-progreso li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--al-tenue);
+}
+
+.al-progreso li.hecho {
+    color: var(--al-texto);
+}
+
+.al-progreso li.activo {
+    color: #fff;
+    font-weight: 600;
+}
+
+.al-punto {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    flex: none;
+}
+
+.al-progreso li.hecho .al-punto {
+    background: var(--al-ok);
+    border-color: var(--al-ok);
+}
+
+.al-progreso li.activo .al-punto {
+    border-color: var(--al-celeste);
+    border-top-color: transparent;
+    animation: al-giro .8s linear infinite;
+}
+
+@keyframes al-giro {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------- Resultado ---------- */
+.al-puntaje {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--al-linea);
+}
+
+.al-anillo {
+    width: 116px;
+    height: 116px;
+    flex: none;
+}
+
+.al-anillo-fondo {
+    fill: none;
+    stroke: rgba(255, 255, 255, .12);
+    stroke-width: 9;
+}
+
+.al-anillo-valor {
+    fill: none;
+    stroke-width: 9;
+    stroke-linecap: round;
+    transition: stroke-dasharray 1s ease;
+}
+
+.al-anillo text {
+    font-size: 32px;
+    font-weight: 700;
+    fill: #fff;
+    font-family: inherit;
+}
+
+.al-anillo text.al-de {
+    font-size: 11px;
+    font-weight: 400;
+    fill: var(--al-tenue);
+}
+
+.al-anillo.ok .al-anillo-valor {
+    stroke: var(--al-ok);
+}
+
+.al-anillo.parcial .al-anillo-valor {
+    stroke: var(--al-parcial);
+}
+
+.al-anillo.falla .al-anillo-valor {
+    stroke: var(--al-falla);
+}
+
+.al-dominio {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    word-break: break-all;
+    color: #fff;
+}
+
+.al-nivel {
+    margin: 2px 0 0;
+    font-weight: 600;
+}
+
+.al-nivel.ok {
+    color: var(--al-ok);
+}
+
+.al-nivel.parcial {
+    color: var(--al-parcial);
+}
+
+.al-nivel.falla {
+    color: var(--al-falla);
+}
+
+.al-categorias {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0;
+}
+
+.al-categorias li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--al-linea);
+    font-size: 14px;
+}
+
+.al-chip {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.al-chip.ok {
+    color: var(--al-ok);
+    background: rgba(52, 195, 143, .14);
+}
+
+.al-chip.parcial {
+    color: var(--al-parcial);
+    background: rgba(240, 180, 41, .14);
+}
+
+.al-chip.falla {
+    color: var(--al-falla);
+    background: rgba(255, 107, 94, .14);
+}
+
+.al-chip.na {
+    color: var(--al-tenue);
+    background: rgba(255, 255, 255, .06);
+}
+
+.al-hallazgos h3 {
+    font-size: 14px;
+    margin: 18px 0 8px;
+    color: var(--al-celeste);
+}
+
+.al-hallazgos p {
+    font-size: 13.5px;
+    margin: 0 0 8px;
+    color: var(--al-suave);
+}
+
+.al-hallazgos strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.al-aviso-correo {
+    margin: 18px 0 4px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(0, 174, 239, .12);
+    border: 1px solid rgba(0, 174, 239, .3);
+    font-size: 14px;
+    color: var(--al-texto);
+}
+
+.al-aviso-correo.falla {
+    background: rgba(255, 107, 94, .12);
+    border-color: rgba(255, 107, 94, .3);
+}
+
+.al-acciones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.al-acciones .al-boton {
+    margin-top: 0;
+    padding: 0 14px;
+    font-size: 15px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* ---------- Qué revisamos ---------- */
+.al-seccion {
+    background: linear-gradient(rgb(3, 42, 65), rgb(26, 60, 71));
+    padding-block: 72px 80px;
+}
+
+.al-titulo-seccion {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 8px;
+    text-align: center;
+}
+
+.al-subtitulo {
+    text-align: center;
+    color: var(--al-suave);
+    margin: 0 auto 36px;
+    max-width: 620px;
+}
+
+.al-areas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.al-area {
+    background: var(--al-panel);
+    border: 1px solid var(--al-linea);
+    border-radius: 16px;
+    padding: 24px;
+    transition: border-color .2s, transform .2s;
+}
+
+.al-area:hover {
+    border-color: rgba(0, 174, 239, .45);
+    transform: translateY(-2px);
+}
+
+.al-num {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--al-celeste);
+    letter-spacing: .06em;
+}
+
+.al-area h3 {
+    font-size: 17px;
+    margin: 8px 0 6px;
+    color: #fff;
+}
+
+.al-area p {
+    font-size: 14px;
+    color: var(--al-suave);
+    margin: 0;
+}
+
+.al-alcance {
+    font-size: 13px;
+    color: var(--al-tenue);
+    margin: 28px auto 0;
+    max-width: 760px;
+    text-align: center;
+}
+
+@media (max-width: 980px) {
+    .al-hero {
+        padding-block: 44px 56px;
+    }
+
+    .al-en-rids .al-hero {
+        padding-top: calc(75px + 36px);
+    }
+
+    .al-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .al-areas {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .al-tarjeta {
+        padding: 22px 18px;
+    }
+
+    .al-fila,
+    .al-acciones,
+    .al-areas {
+        grid-template-columns: 1fr;
+    }
+
+    .al-puntaje {
+        gap: 14px;
+    }
+
+    .al-anillo {
+        width: 96px;
+        height: 96px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .al-progreso li.activo .al-punto {
+        animation: none;
+    }
+
+    .al-anillo-valor,
+    .al-area {
+        transition: none;
+    }
+}

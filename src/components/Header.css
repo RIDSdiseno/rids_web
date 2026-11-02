@@ -32,10 +32,16 @@
 /* Navegación Desktop */
 .nav-links {
   display: flex;
+  align-items: center;
+  /* ← centra todos los enlaces en la misma línea */
   gap: 40px;
 }
 
 .nav-links a {
+  display: inline-flex;
+  /* ← mismo comportamiento para texto, ícono y píldora */
+  align-items: center;
+  line-height: 1.2;
   color: #e6eef1;
   font-weight: 600;
   text-decoration: none;
@@ -53,7 +59,8 @@
   display: flex;
   align-items: center;
   margin-left: 24px;
-  gap: 16px; /* separa iconos y link Econnet */
+  gap: 16px;
+  /* separa iconos y link Econnet */
 }
 
 /* Iconos (Instagram / LinkedIn) */
@@ -143,6 +150,7 @@
     transform: translateY(-30px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -211,6 +219,7 @@
   .header {
     padding: 0 30px;
   }
+
   .nav-links {
     gap: 24px;
   }
@@ -294,4 +303,23 @@
   height: 28px;
   width: auto;
   display: block;
+}
+
+/* Enlace destacado: Analizador Ley 21.719 */
+.nav-links .ley-link,
+.mobile-menu .ley-link {
+  border: 1px solid #00aeef;
+  border-radius: 999px;
+  padding: 5px 14px;
+  line-height: 1.2;
+  color: #00aeef;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-links .ley-link:hover,
+.nav-links .ley-link.active,
+.mobile-menu .ley-link:hover,
+.mobile-menu .ley-link.active {
+  background: #00aeef;
+  color: #fff;
 }

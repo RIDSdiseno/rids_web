@@ -66,6 +66,8 @@ import ProteccionDatosPublicPage
 import logoRids
   from "./assets/logo-rids.png";
 
+import AnalizadorLey21719 from "./components/AnalizadorLey21719";
+
 
 /* =========================================================
    LAYOUT GENERAL
@@ -168,6 +170,17 @@ function AppContent() {
           path="/aviso-legal"
           element={
             <LegalNotice />
+          }
+        />
+
+        {/* =================================================
+            HERRAMIENTAS
+            ================================================= */}
+
+        <Route
+          path="/analizador-ley-21719"
+          element={
+            <AnalizadorLey21719 />
           }
         />
 
