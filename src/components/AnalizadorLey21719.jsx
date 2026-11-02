@@ -3,6 +3,7 @@
 // La API vive en ridsweb-backend (/api/analizador). Su dirección se define en
 // VITE_ANALIZADOR_API (archivo .env del front) al momento de hacer "npm run build".
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import "./AnalizadorLey21719.css";
 
 const API_BASE_URL =
@@ -260,7 +261,7 @@ function Resultado({ res, correo, email, urlContacto, otra }) {
             </div>
 
             <div className="al-acciones">
-                <a className="al-boton" href={urlContacto}>Hablar con RIDS</a>
+                <Link className="al-boton" to={urlContacto}>Hablar con RIDS</Link>
                 <button type="button" className="al-boton al-secundario" onClick={otra}>Analizar otro sitio</button>
             </div>
         </div>

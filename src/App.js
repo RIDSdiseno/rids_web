@@ -68,6 +68,39 @@ import logoRids
 
 import AnalizadorLey21719 from "./components/AnalizadorLey21719";
 
+/* =========================================================
+   SCROLL A SECCIÓN (/#contacto, /#faq-rids)
+   ========================================================= */
+
+function ScrollToHash() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+
+    const id = decodeURIComponent(hash.slice(1));
+    let intentos = 0;
+
+    // Reintenta hasta que la sección exista (el home se dibuja después de navegar)
+    const timer = setInterval(() => {
+      const el =
+        document.getElementById(id) ||
+        document.querySelector(`[name="${id}"]`); // por si usa <Element name="..."> de react-scroll
+
+      if (el) {
+        clearInterval(timer);
+        const y = el.getBoundingClientRect().top + window.scrollY - 75; // alto del header fijo
+        window.scrollTo({ top: y, behavior: "smooth" });
+      } else if (++intentos > 40) {
+        clearInterval(timer); // se rinde a los 4 segundos
+      }
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, [pathname, hash]);
+
+  return null;
+}
 
 /* =========================================================
    LAYOUT GENERAL
@@ -99,6 +132,8 @@ function AppContent() {
       {!isProteccionDatos && (
         <Header />
       )}
+
+      <ScrollToHash />
 
       <Routes>
 
