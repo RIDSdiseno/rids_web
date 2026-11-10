@@ -6,7 +6,7 @@ import {
   revocarConsentimientoPublico,
 } from "../services/proteccionDatos.service";
 
-import logoRids from "../assets/logo-rids.png";
+import logoRids from "../assets/splash.png";
 
 import "./ProteccionDatosPublicPage.css";
 
@@ -44,12 +44,75 @@ function formatearFecha(value) {
   try {
     return new Intl.DateTimeFormat("es-CL", {
       dateStyle: "long",
-
       timeStyle: "short",
+      hourCycle: "h23",
+      timeZone: "America/Santiago",
     }).format(new Date(value));
   } catch {
     return value;
   }
+}
+
+/** "28 de noviembre de 2026", en hora de Chile. */
+function formatearPlazo(value) {
+  if (!value) {
+    return null;
+  }
+
+  try {
+    return new Intl.DateTimeFormat("es-CL", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      timeZone: "America/Santiago",
+    }).format(new Date(value));
+  } catch {
+    return null;
+  }
+}
+
+
+function DocumentoCampo({ documento }) {
+  const size = typeof documento.size === "number" ? documento.size : 0;
+
+  const sizeLabel =
+    size > 0
+      ? size >= 1024 * 1024
+        ? `${(size / 1024 / 1024).toFixed(2)} MB`
+        : `${(size / 1024).toFixed(1)} KB`
+      : null;
+
+  const titulo = documento.titulo || documento.nombre || "Documento";
+
+  return (
+    <a
+      href={documento.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="pd-field-document-link"
+    >
+      <div className="pd-field-document-icon">PDF</div>
+
+      <div className="pd-field-document-info">
+        <strong>{titulo}</strong>
+
+        <div className="pd-field-document-meta">
+          {sizeLabel && <span>{sizeLabel}</span>}
+
+          {documento.origen === "LEYPD" ? (
+            <span>Versión vigente de tu empresa</span>
+          ) : (
+            documento.nombre &&
+            documento.titulo !== documento.nombre && (
+              <span>{documento.nombre}</span>
+            )
+          )}
+        </div>
+      </div>
+
+      <span className="pd-field-document-open">Abrir PDF</span>
+    </a>
+  );
 }
 
 /* =========================================================
@@ -102,46 +165,12 @@ function CampoFormulario({ campo, value, disabled, onChange }) {
             </div>
 
             <div className="pd-field-documents-list">
-              {campo.documentos.map((documento, index) => {
-                const size =
-                  typeof documento.size === "number" ? documento.size : 0;
-
-                const sizeLabel =
-                  size > 0
-                    ? size >= 1024 * 1024
-                      ? `${(size / 1024 / 1024).toFixed(2)} MB`
-                      : `${(size / 1024).toFixed(1)} KB`
-                    : null;
-
-                return (
-                  <a
-                    key={`${campo.key}-${documento.sha256 ?? index}`}
-                    href={documento.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="pd-field-document-link"
-                  >
-                    <div className="pd-field-document-icon">PDF</div>
-
-                    <div className="pd-field-document-info">
-                      <strong>
-                        {documento.titulo || documento.nombre || "Documento"}
-                      </strong>
-
-                      <div className="pd-field-document-meta">
-                        {sizeLabel && <span>{sizeLabel}</span>}
-
-                        {documento.nombre &&
-                          documento.titulo !== documento.nombre && (
-                            <span>{documento.nombre}</span>
-                          )}
-                      </div>
-                    </div>
-
-                    <span className="pd-field-document-open">Abrir PDF</span>
-                  </a>
-                );
-              })}
+              {campo.documentos.map((documento, index) => (
+                <DocumentoCampo
+                  key={`${campo.key}-${documento.sha256 ?? index}`}
+                  documento={documento}
+                />
+              ))}
             </div>
           </div>
         )}
@@ -496,6 +525,12 @@ export default function ProteccionDatosPublicPage() {
   const yaRespondido =
     data.respondido || estadoAceptado || estadoRechazado || estadoRevocado;
 
+  const plazoTexto = formatearPlazo(data.plazo);
+
+  const documentoHtml = (data.documento?.html ?? "")
+    .split("{{plazo}}")
+    .join(plazoTexto ? `<strong>${plazoTexto}</strong>` : "sin fecha definida");
+
   /* =====================================================
      RENDER
      ===================================================== */
@@ -503,29 +538,29 @@ export default function ProteccionDatosPublicPage() {
   return (
     <main className="pd-public-page">
       <div className="pd-public-shell">
-        {/* =================================================
-            HEADER
-            ================================================= */}
-
-        <header className="pd-public-header">
-          <a href="/" className="pd-public-logo-link">
-            <img src={logoRids} alt="RIDS" className="pd-public-logo" />
-          </a>
-
-          <div className="pd-public-security">Documento seguro</div>
-        </header>
-
-        {/* =================================================
-            CARD PRINCIPAL
-            ================================================= */}
 
         <section className="pd-public-card">
           {/* =================================================
               TÍTULO
               ================================================= */}
 
+          <div className="pd-brandbar">
+            <a href="/" className="pd-public-logo-link">
+              <img
+                src={logoRids}
+                alt="RIDS · Soluciones tecnológicas e informáticas"
+                className="pd-brand-logo"
+              />
+            </a>
+
+            <div className="pd-brand-meta">
+              <span>Ley 21.719</span>
+              <span>Protección de datos</span>
+            </div>
+          </div>
+
           <div className="pd-public-title">
-            <span className="pd-eyebrow">Protección de datos</span>
+            <span className="pd-eyebrow">RIDS · Formulario de firma</span>
 
             <h1>
               {config?.tituloFormulario ??
@@ -570,6 +605,21 @@ export default function ProteccionDatosPublicPage() {
           </div>
 
           {/* =================================================
+              DOCUMENTO (no es una sección numerada)
+              ================================================= */}
+
+          {!yaRespondido && (
+            <div className="pd-document-block">
+              <div
+                className="pd-document"
+                dangerouslySetInnerHTML={{
+                  __html: documentoHtml,
+                }}
+              />
+            </div>
+          )}
+
+          {/* =================================================
               MENSAJES
               ================================================= */}
 
@@ -608,29 +658,6 @@ export default function ProteccionDatosPublicPage() {
           )}
 
           {/* =================================================
-              DOCUMENTO LEGAL
-              ================================================= */}
-
-          <section className="pd-section">
-            <div className="pd-section-heading">
-              <span>01</span>
-
-              <div>
-                <h2>Información del documento</h2>
-
-                <p>Versión {data.documento?.version}</p>
-              </div>
-            </div>
-
-            <div
-              className="pd-document"
-              dangerouslySetInnerHTML={{
-                __html: data.documento?.html ?? "",
-              }}
-            />
-          </section>
-
-          {/* =================================================
               FORMULARIO DINÁMICO
               ================================================= */}
 
@@ -641,7 +668,7 @@ export default function ProteccionDatosPublicPage() {
                  * 01 ya corresponde al documento.
                  */
 
-                const numero = String(index + 2).padStart(2, "0");
+                const numero = String(index + 1).padStart(2, "0");
 
                 return (
                   <section key={campo.key} className="pd-section">

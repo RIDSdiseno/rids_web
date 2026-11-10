@@ -57,22 +57,55 @@
     margin-bottom: 30px;
 }
 
+/* Barra de marca dentro de la tarjeta: logo a la izquierda, ley a la derecha */
+.pd-brandbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 22px;
+    margin-bottom: 26px;
+    border-bottom: 1px solid #e4ebee;
+}
+
+.pd-brand-logo {
+    height: 46px;
+    width: auto;
+    display: block;
+}
+
+.pd-brand-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.14em;
+    text-align: right;
+    text-transform: uppercase;
+}
+
 .pd-eyebrow {
     display: inline-block;
-    margin-bottom: 8px;
-    color: #087695;
-    font-size: 13px;
+    margin-bottom: 10px;
+    color: #64748b;
+    font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
 }
 
 .pd-public-title h1 {
     margin: 0;
-    color: #0c3448;
+    color: #1f3a5f;
     font-size: clamp(28px,
             4vw,
             40px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
     line-height: 1.15;
 }
 
@@ -428,6 +461,15 @@
         width: 145px;
     }
 
+    .pd-brand-logo {
+        height: 36px;
+    }
+
+    .pd-brand-meta {
+        font-size: 10px;
+        letter-spacing: 0.1em;
+    }
+
     .pd-public-security {
         display: none;
     }
@@ -748,4 +790,24 @@
 
         margin-top: 2px;
     }
+}
+
+/* =========================================================
+   DOCUMENTO (bajo el detalle del destinatario)
+   ========================================================= */
+
+.pd-document-block {
+    margin-bottom: 30px;
+}
+
+.pd-legal-note {
+    margin: 0 0 14px;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.pd-legal-note strong {
+    color: #1f3a5f;
+    font-weight: 700;
 }

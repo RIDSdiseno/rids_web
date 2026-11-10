@@ -7,8 +7,7 @@ export default function Planes() {
     {
       nombre: "Esencial",
       subtitulo: "“Tu primer paso hacia un soporte confiable.”",
-      precio: "CLP $49.990",
-      oferta: "CLP $24.995 / mes",
+      precio: "CLP $24.995 / mes",
       descripcion:
         "PLAN SUSCRIPCIÓN MENSUAL. Asesoría remota para solicitudes básicas. Pensado para usuarios individuales o emprendedores con un equipo.",
       puntos: [
@@ -23,8 +22,7 @@ export default function Planes() {
     {
       nombre: "Avanza",
       subtitulo: "“El impulso que tu negocio necesita para crecer seguro.”",
-      precio: "CLP $99.990",
-      oferta: "CLP $49.995 / mes",
+      precio: "CLP $49.995 / mes",
       descripcion:
         "PLAN SUSCRIPCIÓN MENSUAL. Asesoría completamente remota para solicitudes básicas y avanzadas. Pensado para pequeñas empresas con hasta 3 usuarios.",
       puntos: [
